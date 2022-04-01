@@ -75,14 +75,10 @@ def card_game():
     # sous-fonction affichant à la console l'état du jeu en 4 paquets 
     def print_deck(deck_list):
         for card in range(len(deck_list)):
-            if card == 12:
-                print(f"\n{deck_list[:13]}\n")
-            elif card == 26: 
-                print(f"{deck_list[13:26]}\n")
-            elif card == 39:
-                print(f"{deck_list[26:39]}\n")
-            elif card == 51: 
-                print(f"{deck_list[39:52]}\n")
+            if card % 13 == 0 and card != 0:
+                print("\n")
+            else:
+                print(f"{deck_list[card]}", end=" ")
     # sous-fonction brassant les cartes en riffle (inter-coupé)
     def riffle_shuf(deck_list):
         pile1, pile2 = deck_list[:26], deck_list[26:]
@@ -116,11 +112,12 @@ def card_game():
     # sous-fonction sauvegardant le dernier état du jeu dans un fichier cards.txt
     def file_write(deck_list):
         f = open("cards.txt", "w", encoding="utf8")
-        f.write(f"{deck_list[:13]}\n\n")
-        f.write(f"{deck_list[13:26]}\n\n")
-        f.write(f"{deck_list[26:39]}\n\n")
-        f.write(f"{deck_list[39:52]}\n\n")
-        f.close 
+        for card in range(len(deck_list)):
+            if card % 13 == 0 and card != 0:
+                f.write("\n")
+            else:
+                f.write(f"{deck_list[card]} ")
+        f.close()
 
     deck_list = deck_init()
     user_res = user_input()
