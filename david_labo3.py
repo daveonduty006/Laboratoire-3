@@ -96,9 +96,15 @@ def card_game():
     def overhand_shuf(deck_list):
         #P7, P1, P3, P13, P2, P4, P11, P6, P8, P5, P12, P10, P9
         decks = []
-        for i in range(0, 52, 4):
-            decks.extend(deck_list[i], deck_list[i+1], deck_list[i+2], \
-                         deck_list[i+3])
+        for i in range(0, 49, 4):
+            decks.append(deck_list[i:i+5])
+        for i in range(13):
+            decks.append(deck_list[i*4:i*4+5])
+        order = [7, 1, 3, 13, 2, 4, 11, 6, 8, 5, 12, 10, 9]
+        shuffled_deck =[]
+        for o in order:
+            #shuffled_deck.extend(deck_list[o])
+            shuffled_deck = shuffled_deck + deck_list[o]
         deck_list = decks 
         return deck_list
     # sous-fonction sauvegardant le dernier état du jeu dans un fichier cards.txt
