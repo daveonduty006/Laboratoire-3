@@ -94,18 +94,20 @@ def card_game():
         return deck_list
     # sous-fonction brassant les cartes en overhand (par paquets)
     def overhand_shuf(deck_list):
-        #P7, P1, P3, P13, P2, P4, P11, P6, P8, P5, P12, P10, P9
-        decks = []
-        for i in range(0, 49, 4):
-            decks.append(deck_list[i:i+5])
-        for i in range(13):
-            decks.append(deck_list[i*4:i*4+5])
-        order = [7, 1, 3, 13, 2, 4, 11, 6, 8, 5, 12, 10, 9]
-        shuffled_deck =[]
-        for o in order:
-            #shuffled_deck.extend(deck_list[o])
-            shuffled_deck = shuffled_deck + deck_list[o]
-        deck_list = decks 
+        d1 = deck_list[0:4]
+        d2 = deck_list[4:8]
+        d3 = deck_list[8:12]
+        d4 = deck_list[12:16]
+        d5 = deck_list[16:20]
+        d6 = deck_list[20:24]
+        d7 = deck_list[24:28]
+        d8 = deck_list[28:32]
+        d9 = deck_list[32:36]
+        d10 = deck_list[36:40]
+        d11 = deck_list[40:44]
+        d12 = deck_list[44:48]
+        d13 = deck_list[48:52]
+        deck_list = d7+d1+d3+d13+d2+d4+d11+d6+d8+d5+d12+d10+d9
         return deck_list
     # sous-fonction sauvegardant le dernier état du jeu dans un fichier cards.txt
     def file_write(deck_list):
