@@ -51,13 +51,13 @@ def card_game():
     # sous-fonction initialisant le paquet de cartes en norme 52-Français
     def deck_init():
         rank_list = ["As", "2", "3", "4", "5", "6", "7", "8", "9", "10",\
-                     "Valet", "Reine", "Roi"]
+                     "V", "Q", "R"]
         suit_list = ["\u2666", "\u2663", "\u2665", "\u2660"]
         deck_list = []
         i = 0
         for suit in suit_list:
             for i in range(len(rank_list)):
-                deck_list.append(rank_list[i]+suit)
+                deck_list.append(f"{rank_list[i]:<2s}"+f"{suit:<3s}")
         return deck_list
     # sous-fonction saisissant les données de l'utilisateur
     def user_input():
@@ -76,9 +76,9 @@ def card_game():
     def print_deck(deck_list):
         for card in range(len(deck_list)):
             if card % 13 == 0 and card != 0:
-                print(f"\n{deck_list[card]:>7s}", end=" ")
+                print(f"\n{deck_list[card]:>4s}", end=" ")
             else:
-                print(f"{deck_list[card]:>7s}", end=" ")
+                print(f"{deck_list[card]:>4s}", end=" ")
     # sous-fonction brassant les cartes en riffle (inter-coupé)
     def riffle_shuf(deck_list):
         pile1, pile2 = deck_list[:26], deck_list[26:]
@@ -114,9 +114,9 @@ def card_game():
         f = open("cards.txt", "w", encoding="utf8")
         for card in range(len(deck_list)):
             if card % 13 == 0 and card != 0:
-                f.write(f"\n{deck_list[card]:>7s}")
+                f.write(f"\n{deck_list[card]:>3s}")
             else:
-                f.write(f"{deck_list[card]:>7s}")
+                f.write(f"{deck_list[card]:>3s}")
         f.close()
 
     deck_list = deck_init()
