@@ -48,6 +48,18 @@
 
 # fonction-mère du programme (module)
 def card_game():
+    def control():
+        deck_list = deck_init()
+        user_res = user_input()
+        while user_res != 4:
+            if user_res == 1:
+                print_deck(deck_list)
+            elif user_res == 2:
+                deck_list = riffle_shuf(deck_list)
+            elif user_res == 3:
+                deck_list = overhand_shuf(deck_list)
+            user_res = user_input()
+        file_write(deck_list)
     # sous-fonction initialisant le paquet de cartes en norme 52-Français
     def deck_init():
         rank_list = ["As", "2", "3", "4", "5", "6", "7", "8", "9", "10",\
@@ -76,9 +88,9 @@ def card_game():
     def print_deck(deck_list):
         for card in range(len(deck_list)):
             if card % 13 == 0 and card != 0:
-                print(f"\n{deck_list[card]:>4s}", end=" ")
+                print(f"\n{deck_list[card]}", end="")
             else:
-                print(f"{deck_list[card]:>4s}", end=" ")
+                print(f"{deck_list[card]}", end="")
     # sous-fonction brassant les cartes en riffle (inter-coupé)
     def riffle_shuf(deck_list):
         pile1, pile2 = deck_list[:26], deck_list[26:]
@@ -94,43 +106,26 @@ def card_game():
         return deck_list
     # sous-fonction brassant les cartes en overhand (par paquets)
     def overhand_shuf(deck_list):
-        d1 = deck_list[0:4]
-        d2 = deck_list[4:8]
-        d3 = deck_list[8:12]
-        d4 = deck_list[12:16]
-        d5 = deck_list[16:20]
-        d6 = deck_list[20:24]
-        d7 = deck_list[24:28]
-        d8 = deck_list[28:32]
-        d9 = deck_list[32:36]
-        d10 = deck_list[36:40]
-        d11 = deck_list[40:44]
-        d12 = deck_list[44:48]
-        d13 = deck_list[48:52]
-        deck_list = d7+d1+d3+d13+d2+d4+d11+d6+d8+d5+d12+d10+d9
+        card1_decks = [24, 0, 8, 48, 4, 12, 40, 20, 28, 16, 44, 36, 32]
+        shuffled_deck = []
+        for card in card1_decks:
+            shuffled_deck.append(deck_list[card])
+            shuffled_deck.append(deck_list[card+1])
+            shuffled_deck.append(deck_list[card+2])
+            shuffled_deck.append(deck_list[card+3])
+        deck_list = shuffled_deck
         return deck_list
     # sous-fonction sauvegardant le dernier état du jeu dans un fichier cards.txt
     def file_write(deck_list):
         f = open("cards.txt", "w", encoding="utf8")
         for card in range(len(deck_list)):
             if card % 13 == 0 and card != 0:
-                f.write(f"\n{deck_list[card]:>3s}")
+                f.write(f"\n{deck_list[card]}")
             else:
-                f.write(f"{deck_list[card]:>3s}")
+                f.write(f"{deck_list[card]}")
         f.close()
 
-    deck_list = deck_init()
-    user_res = user_input()
-    # contrôle de saisie au clavier de l'utilisateur 
-    while user_res != 4:
-        if user_res == 1:
-            print_deck(deck_list)
-        elif user_res == 2:
-            deck_list = riffle_shuf(deck_list)
-        elif user_res == 3:
-            deck_list = overhand_shuf(deck_list)
-        user_res = user_input()
-    file_write(deck_list)
+    control()
 
 
 card_game()
