@@ -49,6 +49,7 @@
 # fonction-mère du programme (module)
 def card_game():
     def control():
+        # sous-fonction contrôlant le flux du programme
         deck_list = deck_init()
         user_res = user_input()
         while user_res != 4:
