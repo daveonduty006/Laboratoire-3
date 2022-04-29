@@ -5,7 +5,7 @@
 ***
 
 ### Description ###
-    This second project is the creation of a 52-card deck shuffling program. Using loops, the deck cards are generated using the contents of two lists (ranks, suits). 
+    This third project is the creation of a 52-card deck shuffling program. Using loops, the deck cards are generated using the contents of two lists (ranks, suits). 
     A menu is then presented to the user with four options: displaying the state of the deck, riffle-shuffling the deck, overhand-shuffling the deck and saving the state of the deck within a file/exiting the program. 
     The deck can be shuffled as many time as the user want and the cards, once displayed-on-the-console/written-in-the-file, must all be perfectly aligned without any brackets, commas and quotes (no traces of the code object).
 
